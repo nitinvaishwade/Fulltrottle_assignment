@@ -6,13 +6,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 
-# SECRET_KEY = 'foq211^89zn=-bym^kxc@ue5ji3xr!17lvi34diz8q$k&g)ey$'
 SECRET_KEY = '3#yr*vaqi8h4pi5agi3!_wm-wrpet^$af$758zmqsfd!3e%*ag'
 
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['fulltrottleassignment.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -32,7 +31,7 @@ INSTALLED_APPS = [
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    #'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -63,20 +62,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'employee_project.wsgi.application'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-
-# Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'EmployeeDB',
-#         'USER': 'postgres',
-#         'PASSWORD': 'postgres',
-#         'HOST': 'localhost'
-#     }
-# }
-
 
 
 
@@ -110,9 +95,6 @@ DATABASES = {
 }
 
 
-import dj_database_url 
-prod_db  =  dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
