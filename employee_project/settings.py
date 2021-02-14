@@ -12,7 +12,7 @@ SECRET_KEY = '3#yr*vaqi8h4pi5agi3!_wm-wrpet^$af$758zmqsfd!3e%*ag'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['fulltrottleassignment.herokuapp.com']
+ALLOWED_HOSTS = ['arcane-escarpment-14768.herokuapp.com']
 
 
 # Application definition
