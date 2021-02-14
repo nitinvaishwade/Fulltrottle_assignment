@@ -5,7 +5,7 @@ import dumper
 from random import randint
 from rest_framework.views import APIView
 from django.shortcuts import render, redirect
-from .forms import EmployeeForm, LoginForm
+from .forms import LoginForm
 from .models import Employee
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
@@ -61,44 +61,56 @@ class ActivityPeriodViewSet(viewsets.ModelViewSet):
     serializer_class = ActivityPeriodSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+import requests
 
-
-@login_required
+# @login_required
 def homepage(request):
     """
     Home page
     """
+    if request.method == 'POST':
+        logging.info('given_number')
+        GenerateFakeData()
+        return redirect('/list')
+        
+    if request.method == 'GET':
+        given_input = request.GET.get('show_answer')
+        if given_input:
+
+            # response = requests.get("http://127.0.0.1:8000/users_api/")
+            return redirect('/users_api')
+
     return render(request, "homepage.html")
 
-@login_required
+# @login_required
 def employee_list(request):
-    context = {'employee_list': Employee.objects.all()}
+    context = {'employee_list': ActivityPeriod.objects.all()}
     return render(request, "employee_register/employee_list.html", context)
 
-@login_required
-def employee_form(request, id=0):
-    if request.method == "GET":
-        if id == 0:
-            form = EmployeeForm()
-        else:
-            employee = Employee.objects.get(pk=id)
-            form = EmployeeForm(instance=employee)
-        return render(request, "employee_register/employee_form.html", {'form': form})
-    else:
-        if id == 0:
-            form = EmployeeForm(request.POST)
-        else:
-            employee = Employee.objects.get(pk=id)
-            form = EmployeeForm(request.POST,instance= employee)
-        if form.is_valid():
-            form.save()
-        return redirect('/list')
+# @login_required
+# def employee_form(request, id=0):
+#     if request.method == "GET":
+#         if id == 0:
+#             form = EmployeeForm()
+#         else:
+#             employee = Employee.objects.get(pk=id)
+#             form = EmployeeForm(instance=employee)
+#         return render(request, "employee_register/employee_form.html", {'form': form})
+#     else:
+#         if id == 0:
+#             form = EmployeeForm(request.POST)
+#         else:
+#             employee = Employee.objects.get(pk=id)
+#             form = EmployeeForm(request.POST,instance= employee)
+#         if form.is_valid():
+#             form.save()
+#         return redirect('/list')
 
-@login_required
-def employee_delete(request,id):
-    employee = Employee.objects.get(pk=id)
-    employee.delete()
-    return redirect('/list')
+# @login_required
+# def employee_delete(request,id):
+#     employee = Employee.objects.get(pk=id)
+#     employee.delete()
+#     return redirect('/list')
 
 
 def logout_request(request):

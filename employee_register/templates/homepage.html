@@ -26,8 +26,24 @@
 
                 <div class="row">
                    <div class="col-md-4">
-                   	<label>Username:</label>
-                     <input type="text" name="">
+                      <form action="" method="post" autocomplete="off">
+                        {% csrf_token %}
+                   	<label>Number of Dummy User:</label>
+                      <input type="submit" value="Click here to generate"></input>
+                     </form>
+                 </div>
+                 </div>
+                 <br>
+                 <br>
+                 <div class="row">
+                   <div class="col-md-4">
+                      <form action="" method="get" autocomplete="off">
+                        {% csrf_token %}
+                    <label>Json Response:</label>
+                    <p>select checkbox for api result</p>
+                    <input type="checkbox" name="show_answer" value="true">
+                      <input type="submit" value="Click here test api"></input>
+                     </form>
                  </div>
                  </div>
 
